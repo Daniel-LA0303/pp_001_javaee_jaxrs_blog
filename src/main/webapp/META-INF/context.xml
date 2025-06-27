@@ -1,0 +1,14 @@
+<Context>
+    <!--
+        El pool de conexiones esta definido por 
+        maxTotal="100"   Tamaño máximo del pool 
+        maxIdle="30"     Conexiones inactivas mantenidas 
+        maxWaitMillis="10000" Tiempo de espera para obtener conexión
+    -->
+    <Resource name="jdbc/myPostgreSQLDB" auth="Container" type="javax.sql.DataSource"
+              maxTotal="100" maxIdle="30" maxWaitMillis="10000" 
+              username="postgres" password="1234" 
+              driverClassName="org.postgresql.Driver"
+              url="jdbc:postgresql://localhost:5432/pp_javaee_blog"
+              validationQuery="SELECT 1"/>
+</Context>
