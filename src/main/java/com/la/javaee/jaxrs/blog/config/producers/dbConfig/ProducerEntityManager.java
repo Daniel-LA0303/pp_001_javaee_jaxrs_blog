@@ -7,7 +7,7 @@ import jakarta.persistence.PersistenceContext;
 
 @RequestScoped
 public class ProducerEntityManager {
-	
+
 	@PersistenceContext()
 	private EntityManager em;
 
