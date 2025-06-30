@@ -18,56 +18,31 @@
         <failOnMissingWebXml>false</failOnMissingWebXml>
     </properties>
 
-    <dependencies>
+  <dependencies>
+    <!-- Jakarta EE API: scope provided para no empaquetar en WAR -->
     <dependency>
-        <groupId>jakarta.platform</groupId>
-        <artifactId>jakarta.jakartaee-web-api</artifactId>
-        <version>9.1.0</version>
-        <scope>provided</scope>
+      <groupId>jakarta.platform</groupId>
+      <artifactId>jakarta.jakartaee-web-api</artifactId>
+      <version>9.1.0</version>
+      <scope>provided</scope>
     </dependency>
-    
-    <!-- Implementación de JAX-RS (Jersey) -->
+
+    <!-- Hibernate Core para JPA -->
     <dependency>
-        <groupId>org.glassfish.jersey.containers</groupId>
-        <artifactId>jersey-container-servlet</artifactId>
-        <version>3.1.0</version>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-core</artifactId>
+      <version>6.4.4.Final</version>
     </dependency>
-    
-    <!-- Para inyección de dependencias -->
+
+    <!-- Driver PostgreSQL -->
     <dependency>
-        <groupId>org.glassfish.jersey.inject</groupId>
-        <artifactId>jersey-hk2</artifactId>
-        <version>3.1.0</version>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <version>42.7.3</version>
     </dependency>
-    
-    <!-- Soporte para JSON -->
-    <dependency>
-        <groupId>org.glassfish.jersey.media</groupId>
-        <artifactId>jersey-media-json-binding</artifactId>
-        <version>3.1.0</version>
-    </dependency>
-    <!-- Hibernate 6.x (para Jakarta EE 9+) -->
-	<dependency>
-	    <groupId>org.hibernate</groupId>
-	    <artifactId>hibernate-core</artifactId>
-	    <version>6.4.4.Final</version>
-	</dependency>
-	
-	<!-- Driver PostgreSQL -->
-	<dependency>
-	    <groupId>org.postgresql</groupId>
-	    <artifactId>postgresql</artifactId>
-	    <version>42.7.3</version>
-	</dependency>
-	
-	<!-- Jakarta Persistence API -->
-	<dependency>
-	    <groupId>jakarta.platform</groupId>
-	    <artifactId>jakarta.jakartaee-api</artifactId>
-	    <version>9.1.0</version>
-	    <scope>provided</scope>
-	</dependency>
-    </dependencies>
+
+  </dependencies>
+
 
     <build>
         <plugins>

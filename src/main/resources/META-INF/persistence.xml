@@ -8,7 +8,9 @@
     <!-- Usa el DataSource de tu context.xml -->
     <persistence-unit name="blogPU" transaction-type="JTA">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <jta-data-source>java:/comp/env/jdbc/myPostgreSQLDB</jta-data-source>
+        <jta-data-source>java:/jdbc/myPostgreSQLDB</jta-data-source>
+
+
         
         <!-- Propiedades específicas para PostgreSQL -->
         <properties>

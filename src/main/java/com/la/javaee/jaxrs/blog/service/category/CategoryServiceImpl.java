@@ -3,8 +3,10 @@ package com.la.javaee.jaxrs.blog.service.category;
 import java.util.List;
 
 import com.la.javaee.jaxrs.blog.models.category.CategoryEntity;
+import com.la.javaee.jaxrs.blog.repository.CrudRepository;
 
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 
 /*
  * Razón: @ApplicationScoped para servicios stateless
@@ -16,10 +18,13 @@ import jakarta.enterprise.context.ApplicationScoped;
 @ApplicationScoped // Singleton durante toda la aplicación
 public class CategoryServiceImpl implements CategoryService {
 
+	@Inject
+	private CrudRepository<CategoryEntity> categoryRepository;
+
 	@Override
 	public List<CategoryEntity> getAll() {
 		// TODO Auto-generated method stub
-		return null;
+		return categoryRepository.getAll();
 	}
 
 }
