@@ -45,6 +45,7 @@
 
 
     <build>
+    	<finalName>api-rest-jaxrs</finalName> 
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
