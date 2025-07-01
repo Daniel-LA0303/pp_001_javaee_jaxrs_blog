@@ -5,6 +5,7 @@ import java.util.Set;
 
 import com.la.javaee.jaxrs.blog.web.HelloController;
 import com.la.javaee.jaxrs.blog.web.category.CategoryResource;
+import com.la.javaee.jaxrs.blog.web.user.UserResource;
 
 import jakarta.ws.rs.ApplicationPath;
 import jakarta.ws.rs.core.Application;
@@ -17,6 +18,7 @@ public class ApplicationConfig extends Application {
 		Set<Class<?>> resources = new HashSet<>();
 		resources.add(HelloController.class);
 		resources.add(CategoryResource.class); // <-- Aquí agregas tu otra clase
+		resources.add(UserResource.class);
 		// Puedes seguir agregando más recursos
 		return resources;
 	}
