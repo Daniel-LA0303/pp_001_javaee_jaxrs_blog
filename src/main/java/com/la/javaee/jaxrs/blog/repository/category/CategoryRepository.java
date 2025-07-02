@@ -10,6 +10,10 @@ public interface CategoryRepository extends CrudRepository<CategoryEntity> {
 
 	CategoryEntity createCategory(CategoryDTO categoryDTO);
 
+	Optional<CategoryEntity> getByName(String name);
+
 	Optional<CategoryEntity> getCategoryById(Long categoryId);
+
+	CategoryEntity updateCategory(Long categoryId, CategoryDTO categoryDTO);
 
 }
