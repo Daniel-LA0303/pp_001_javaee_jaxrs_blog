@@ -5,12 +5,14 @@ import java.util.List;
 import com.la.javaee.jaxrs.blog.models.user.UserEntity;
 import com.la.javaee.jaxrs.blog.service.user.UserService;
 import com.la.javaee.jaxrs.blog.utils.ApiResponse;
+import com.la.javaee.jaxrs.blog.utils.dto.user.UserDTO;
 import com.la.javaee.jaxrs.blog.utils.enums.MethodEnum;
 
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
+import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
@@ -25,6 +27,17 @@ public class UserResource {
 
 	@Inject
 	private UserService userService;
+
+	@POST
+	public Response createUser(UserDTO userDTO) {
+
+		UserEntity createdUser = userService.createUser(userDTO);
+
+		ApiResponse<UserEntity> response = new ApiResponse<>(Response.Status.CREATED.getStatusCode(), "/api/users/",
+				MethodEnum.POST, "User created successfully", createdUser, false);
+
+		return Response.ok(response).build();
+	}
 
 	@GET
 	public Response getAllUsers() {

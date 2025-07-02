@@ -7,109 +7,112 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "user_info_tbl")
 public class UserInfoEntity {
-    
+
 	/**
 	 * id
 	 */
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) 
-    @Column(name = "id_user_info", updatable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_user_info", updatable = false)
 	private Long idUserInfo;
-	
+
 	/**
 	 * profile picture
 	 */
 	@Column(name = "profile_picture")
 	private String profilePicture;
-	
+
 	/**
 	 * bio
 	 */
 	@Column(name = "bio")
 	private String bio;
-	
+
 	/**
 	 * last login
 	 */
 	@Column(name = "last_login")
 	private LocalDateTime lastLogin;
-	
+
 	/**
 	 * is active
 	 */
 	@Column(name = "is_active")
 	private Boolean isActive;
-	
+
 	/**
 	 * phone
 	 */
 	@Column(name = "phone")
 	private String phone;
-	
+
 	/**
 	 * direction
 	 */
 	@Column(name = "direction")
 	private String direction;
-	
+
 	/**
 	 * name
 	 */
 	@Column(name = "name")
 	private String name;
-	
+
 	/**
 	 * last name
 	 */
 	@Column(name = "last_name")
 	private String lastName;
-	
+
 	/**
 	 * work
 	 */
 	@Column(name = "work")
 	private String work;
-	
+
 	/**
 	 * education
 	 */
 	@Column(name = "education")
 	private String education;
-	
+
 	/**
 	 * pronouns
 	 */
 	@Column(name = "pronouns")
 	private String pronouns;
-	
+
 	/**
 	 * website
 	 */
 	@Column(name = "website")
 	private String website;
-	
+
 	/*
 	 * city
 	 */
 	@Column(name = "city")
 	private String city;
-	
+
 	/**
 	 * skills
 	 */
 	@Column(name = "skills")
 	private String skills;
-	
+
 	/**
 	 * id user
 	 */
-	@Column(name = "id_user")
-	private String idUser;
+	@OneToOne
+	@JoinColumn(name = "id_user", referencedColumnName = "id_user")
+	private UserEntity user;
 
 	/**
 	 * 
@@ -133,11 +136,11 @@ public class UserInfoEntity {
 	 * @param website
 	 * @param city
 	 * @param skills
-	 * @param idUser
+	 * @param user
 	 */
 	public UserInfoEntity(Long idUserInfo, String profilePicture, String bio, LocalDateTime lastLogin, Boolean isActive,
 			String phone, String direction, String name, String lastName, String work, String education,
-			String pronouns, String website, String city, String skills, String idUser) {
+			String pronouns, String website, String city, String skills, UserEntity user) {
 		this.idUserInfo = idUserInfo;
 		this.profilePicture = profilePicture;
 		this.bio = bio;
@@ -153,43 +156,7 @@ public class UserInfoEntity {
 		this.website = website;
 		this.city = city;
 		this.skills = skills;
-		this.idUser = idUser;
-	}
-
-	/**
-	 * return idUserInfo
-	 *
-	 * @return the idUserInfo
-	 */
-	public Long getIdUserInfo() {
-		return idUserInfo;
-	}
-
-	/**
-	 * set the idUserInfo
-	 *
-	 * @param idUserInfo the idUserInfo to set
-	 */
-	public void setIdUserInfo(Long idUserInfo) {
-		this.idUserInfo = idUserInfo;
-	}
-
-	/**
-	 * return profilePicture
-	 *
-	 * @return the profilePicture
-	 */
-	public String getProfilePicture() {
-		return profilePicture;
-	}
-
-	/**
-	 * set the profilePicture
-	 *
-	 * @param profilePicture the profilePicture to set
-	 */
-	public void setProfilePicture(String profilePicture) {
-		this.profilePicture = profilePicture;
+		this.user = user;
 	}
 
 	/**
@@ -202,66 +169,12 @@ public class UserInfoEntity {
 	}
 
 	/**
-	 * set the bio
+	 * return city
 	 *
-	 * @param bio the bio to set
+	 * @return the city
 	 */
-	public void setBio(String bio) {
-		this.bio = bio;
-	}
-
-	/**
-	 * return lastLogin
-	 *
-	 * @return the lastLogin
-	 */
-	public LocalDateTime getLastLogin() {
-		return lastLogin;
-	}
-
-	/**
-	 * set the lastLogin
-	 *
-	 * @param lastLogin the lastLogin to set
-	 */
-	public void setLastLogin(LocalDateTime lastLogin) {
-		this.lastLogin = lastLogin;
-	}
-
-	/**
-	 * return isActive
-	 *
-	 * @return the isActive
-	 */
-	public Boolean getIsActive() {
-		return isActive;
-	}
-
-	/**
-	 * set the isActive
-	 *
-	 * @param isActive the isActive to set
-	 */
-	public void setIsActive(Boolean isActive) {
-		this.isActive = isActive;
-	}
-
-	/**
-	 * return phone
-	 *
-	 * @return the phone
-	 */
-	public String getPhone() {
-		return phone;
-	}
-
-	/**
-	 * set the phone
-	 *
-	 * @param phone the phone to set
-	 */
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public String getCity() {
+		return city;
 	}
 
 	/**
@@ -274,30 +187,39 @@ public class UserInfoEntity {
 	}
 
 	/**
-	 * set the direction
+	 * return education
 	 *
-	 * @param direction the direction to set
+	 * @return the education
 	 */
-	public void setDirection(String direction) {
-		this.direction = direction;
+	public String getEducation() {
+		return education;
 	}
 
 	/**
-	 * return name
+	 * return idUserInfo
 	 *
-	 * @return the name
+	 * @return the idUserInfo
 	 */
-	public String getName() {
-		return name;
+	public Long getIdUserInfo() {
+		return idUserInfo;
 	}
 
 	/**
-	 * set the name
+	 * return isActive
 	 *
-	 * @param name the name to set
+	 * @return the isActive
 	 */
-	public void setName(String name) {
-		this.name = name;
+	public Boolean getIsActive() {
+		return isActive;
+	}
+
+	/**
+	 * return lastLogin
+	 *
+	 * @return the lastLogin
+	 */
+	public LocalDateTime getLastLogin() {
+		return lastLogin;
 	}
 
 	/**
@@ -310,48 +232,30 @@ public class UserInfoEntity {
 	}
 
 	/**
-	 * set the lastName
+	 * return name
 	 *
-	 * @param lastName the lastName to set
+	 * @return the name
 	 */
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public String getName() {
+		return name;
 	}
 
 	/**
-	 * return work
+	 * return phone
 	 *
-	 * @return the work
+	 * @return the phone
 	 */
-	public String getWork() {
-		return work;
+	public String getPhone() {
+		return phone;
 	}
 
 	/**
-	 * set the work
+	 * return profilePicture
 	 *
-	 * @param work the work to set
+	 * @return the profilePicture
 	 */
-	public void setWork(String work) {
-		this.work = work;
-	}
-
-	/**
-	 * return education
-	 *
-	 * @return the education
-	 */
-	public String getEducation() {
-		return education;
-	}
-
-	/**
-	 * set the education
-	 *
-	 * @param education the education to set
-	 */
-	public void setEducation(String education) {
-		this.education = education;
+	public String getProfilePicture() {
+		return profilePicture;
 	}
 
 	/**
@@ -364,12 +268,21 @@ public class UserInfoEntity {
 	}
 
 	/**
-	 * set the pronouns
+	 * return skills
 	 *
-	 * @param pronouns the pronouns to set
+	 * @return the skills
 	 */
-	public void setPronouns(String pronouns) {
-		this.pronouns = pronouns;
+	public String getSkills() {
+		return skills;
+	}
+
+	/**
+	 * return the value of the propertie user
+	 *
+	 * @return the user
+	 */
+	public UserEntity getUser() {
+		return user;
 	}
 
 	/**
@@ -382,21 +295,21 @@ public class UserInfoEntity {
 	}
 
 	/**
-	 * set the website
+	 * return work
 	 *
-	 * @param website the website to set
+	 * @return the work
 	 */
-	public void setWebsite(String website) {
-		this.website = website;
+	public String getWork() {
+		return work;
 	}
 
 	/**
-	 * return city
+	 * set the bio
 	 *
-	 * @return the city
+	 * @param bio the bio to set
 	 */
-	public String getCity() {
-		return city;
+	public void setBio(String bio) {
+		this.bio = bio;
 	}
 
 	/**
@@ -409,12 +322,93 @@ public class UserInfoEntity {
 	}
 
 	/**
-	 * return skills
+	 * set the direction
 	 *
-	 * @return the skills
+	 * @param direction the direction to set
 	 */
-	public String getSkills() {
-		return skills;
+	public void setDirection(String direction) {
+		this.direction = direction;
+	}
+
+	/**
+	 * set the education
+	 *
+	 * @param education the education to set
+	 */
+	public void setEducation(String education) {
+		this.education = education;
+	}
+
+	/**
+	 * set the idUserInfo
+	 *
+	 * @param idUserInfo the idUserInfo to set
+	 */
+	public void setIdUserInfo(Long idUserInfo) {
+		this.idUserInfo = idUserInfo;
+	}
+
+	/**
+	 * set the isActive
+	 *
+	 * @param isActive the isActive to set
+	 */
+	public void setIsActive(Boolean isActive) {
+		this.isActive = isActive;
+	}
+
+	/**
+	 * set the lastLogin
+	 *
+	 * @param lastLogin the lastLogin to set
+	 */
+	public void setLastLogin(LocalDateTime lastLogin) {
+		this.lastLogin = lastLogin;
+	}
+
+	/**
+	 * set the lastName
+	 *
+	 * @param lastName the lastName to set
+	 */
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	/**
+	 * set the name
+	 *
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	/**
+	 * set the phone
+	 *
+	 * @param phone the phone to set
+	 */
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	/**
+	 * set the profilePicture
+	 *
+	 * @param profilePicture the profilePicture to set
+	 */
+	public void setProfilePicture(String profilePicture) {
+		this.profilePicture = profilePicture;
+	}
+
+	/**
+	 * set the pronouns
+	 *
+	 * @param pronouns the pronouns to set
+	 */
+	public void setPronouns(String pronouns) {
+		this.pronouns = pronouns;
 	}
 
 	/**
@@ -427,21 +421,30 @@ public class UserInfoEntity {
 	}
 
 	/**
-	 * return idUser
+	 * set the value of the proppertie user
 	 *
-	 * @return the idUser
+	 * @param user the user to set
 	 */
-	public String getIdUser() {
-		return idUser;
+	public void setUser(UserEntity user) {
+		this.user = user;
 	}
 
 	/**
-	 * set the idUser
+	 * set the website
 	 *
-	 * @param idUser the idUser to set
+	 * @param website the website to set
 	 */
-	public void setIdUser(String idUser) {
-		this.idUser = idUser;
+	public void setWebsite(String website) {
+		this.website = website;
+	}
+
+	/**
+	 * set the work
+	 *
+	 * @param work the work to set
+	 */
+	public void setWork(String work) {
+		this.work = work;
 	}
 
 }
