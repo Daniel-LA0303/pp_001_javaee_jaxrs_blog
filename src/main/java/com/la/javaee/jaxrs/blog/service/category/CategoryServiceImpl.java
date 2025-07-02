@@ -1,6 +1,7 @@
 package com.la.javaee.jaxrs.blog.service.category;
 
 import java.util.List;
+import java.util.Set;
 
 import com.la.javaee.jaxrs.blog.exceptions.AppException;
 import com.la.javaee.jaxrs.blog.models.category.CategoryEntity;
@@ -68,6 +69,18 @@ public class CategoryServiceImpl implements CategoryService {
 
 		// Realizar actualización
 		return categoryRepository.updateCategory(idCategory, categoryDTO);
+	}
+
+	@Override
+	public List<CategoryEntity> validateCategories(Set<Long> categoryIds) {
+		List<CategoryEntity> found = categoryRepository.findByIds(categoryIds);
+
+		if (found.size() != categoryIds.size()) {
+			throw new AppException("One or more categories do not exist.", Response.Status.BAD_REQUEST.getStatusCode(),
+					"/api/blogs", MethodEnum.POST);
+		}
+
+		return found;
 	}
 
 }

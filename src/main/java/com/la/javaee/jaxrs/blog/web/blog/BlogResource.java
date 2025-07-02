@@ -5,12 +5,15 @@ import java.util.List;
 import com.la.javaee.jaxrs.blog.models.blog.BlogEntity;
 import com.la.javaee.jaxrs.blog.service.blog.BlogService;
 import com.la.javaee.jaxrs.blog.utils.ApiResponse;
+import com.la.javaee.jaxrs.blog.utils.dto.blog.BlogDTO;
 import com.la.javaee.jaxrs.blog.utils.enums.MethodEnum;
 
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
@@ -25,6 +28,17 @@ public class BlogResource {
 
 	@Inject
 	private BlogService blogService;
+
+	@POST
+	public Response createBlog(BlogDTO blogDTO) {
+
+		BlogEntity blog = blogService.createBlog(blogDTO);
+
+		ApiResponse<BlogEntity> response = new ApiResponse<>(Response.Status.CREATED.getStatusCode(), "/api/blogs/",
+				MethodEnum.POST, "Blog created successfully", blog, false);
+
+		return Response.ok(response).build();
+	}
 
 	@GET
 	public Response getAllCategories() {
@@ -51,6 +65,15 @@ public class BlogResource {
 
 		return Response.ok(response).build();
 
+	}
+
+	@PUT
+	@Path("/{id}")
+	public Response updateBlog(@PathParam("id") Long id, BlogDTO blogDTO) {
+		BlogEntity blog = blogService.updateBlog(id, blogDTO);
+		ApiResponse<BlogEntity> response = new ApiResponse<>(Response.Status.OK.getStatusCode(), "/api/blogs/" + id,
+				MethodEnum.PUT, "Blog updated successfully", blog, false);
+		return Response.ok(response).build();
 	}
 
 }

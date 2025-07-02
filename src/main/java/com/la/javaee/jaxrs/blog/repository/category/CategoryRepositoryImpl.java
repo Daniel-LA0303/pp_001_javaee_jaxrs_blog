@@ -3,6 +3,7 @@ package com.la.javaee.jaxrs.blog.repository.category;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import com.la.javaee.jaxrs.blog.models.category.CategoryEntity;
 import com.la.javaee.jaxrs.blog.utils.dto.category.CategoryDTO;
@@ -47,6 +48,12 @@ public class CategoryRepositoryImpl implements CategoryRepository {
 	public void delete(Long id) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public List<CategoryEntity> findByIds(Set<Long> ids) {
+		return em.createQuery("SELECT c FROM CategoryEntity c WHERE c.idCategory IN :ids", CategoryEntity.class)
+				.setParameter("ids", ids).getResultList();
 	}
 
 	@Override

@@ -38,7 +38,7 @@ public class BlogEntity {
 	/**
 	 * description
 	 */
-	@Column(name = "descirption")
+	@Column(name = "description")
 	private String description;
 
 	/**
@@ -87,7 +87,7 @@ public class BlogEntity {
 	 * id user
 	 */
 	@Column(name = "id_user", nullable = false)
-	private Long userId;
+	private Long idUser;
 
 	@ManyToMany(fetch = FetchType.EAGER) // O FetchType.EAGER si siempre necesitas categorías
 	@JoinTable(name = "blog_category_tbl", // Tabla intermedia
@@ -117,7 +117,7 @@ public class BlogEntity {
 	 * @param categories
 	 */
 	public BlogEntity(Long idBlog, String title, String description, String content, String status, String minRead,
-			String blogImgURL, String slug, LocalDateTime createdAt, LocalDateTime updatedAt, Long userId,
+			String blogImgURL, String slug, LocalDateTime createdAt, LocalDateTime updatedAt, Long idUser,
 			Set<CategoryEntity> categories) {
 		this.idBlog = idBlog;
 		this.title = title;
@@ -129,7 +129,7 @@ public class BlogEntity {
 		this.slug = slug;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
-		this.userId = userId;
+		this.idUser = idUser;
 		this.categories = categories;
 	}
 
@@ -188,6 +188,15 @@ public class BlogEntity {
 	}
 
 	/**
+	 * return userId
+	 *
+	 * @return the userId
+	 */
+	public Long getIdUser() {
+		return idUser;
+	}
+
+	/**
 	 * return minRead
 	 *
 	 * @return the minRead
@@ -230,15 +239,6 @@ public class BlogEntity {
 	 */
 	public LocalDateTime getUpdatedAt() {
 		return updatedAt;
-	}
-
-	/**
-	 * return userId
-	 *
-	 * @return the userId
-	 */
-	public Long getUserId() {
-		return userId;
 	}
 
 	/**
@@ -296,6 +296,15 @@ public class BlogEntity {
 	}
 
 	/**
+	 * set the userId
+	 *
+	 * @param userId the userId to set
+	 */
+	public void setIdUser(Long idUser) {
+		this.idUser = idUser;
+	}
+
+	/**
 	 * set the minRead
 	 *
 	 * @param minRead the minRead to set
@@ -338,15 +347,6 @@ public class BlogEntity {
 	 */
 	public void setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
-	}
-
-	/**
-	 * set the userId
-	 *
-	 * @param userId the userId to set
-	 */
-	public void setUserId(Long userId) {
-		this.userId = userId;
 	}
 
 }
