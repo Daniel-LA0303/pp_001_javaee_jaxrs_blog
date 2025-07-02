@@ -8,4 +8,6 @@ public interface BlogService {
 
 	public List<BlogEntity> getAll();
 
+	public BlogEntity getOneBlog(Long idBlog);
+
 }
