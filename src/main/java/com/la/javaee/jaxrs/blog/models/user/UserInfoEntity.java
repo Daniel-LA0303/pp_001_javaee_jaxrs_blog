@@ -2,6 +2,7 @@ package com.la.javaee.jaxrs.blog.models.user;
 
 import java.time.LocalDateTime;
 
+import jakarta.json.bind.annotation.JsonbTransient;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -112,6 +113,7 @@ public class UserInfoEntity {
 	 */
 	@OneToOne
 	@JoinColumn(name = "id_user", referencedColumnName = "id_user")
+	@JsonbTransient
 	private UserEntity user;
 
 	/**

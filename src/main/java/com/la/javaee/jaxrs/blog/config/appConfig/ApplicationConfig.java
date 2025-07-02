@@ -3,6 +3,7 @@ package com.la.javaee.jaxrs.blog.config.appConfig;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.la.javaee.jaxrs.blog.config.json.JsonbConfigProvider;
 import com.la.javaee.jaxrs.blog.exceptions.GlobalExceptionMapper;
 import com.la.javaee.jaxrs.blog.web.HelloController;
 import com.la.javaee.jaxrs.blog.web.category.CategoryResource;
@@ -21,6 +22,8 @@ public class ApplicationConfig extends Application {
 		resources.add(CategoryResource.class); // <-- Aquí agregas tu otra clase
 		resources.add(UserResource.class);
 		resources.add(GlobalExceptionMapper.class);
+		resources.add(JsonbConfigProvider.class);
+
 		// Puedes seguir agregando más recursos
 		return resources;
 	}
