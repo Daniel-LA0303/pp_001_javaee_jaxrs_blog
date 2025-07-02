@@ -8,4 +8,6 @@ public interface CategoryService {
 
 	public List<CategoryEntity> getAll();
 
+	public CategoryEntity getOneCategory(Long idCategory);
+
 }

@@ -12,6 +12,7 @@ import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
@@ -38,6 +39,21 @@ public class CategoryResource {
 		);
 
 		return Response.ok(response).build();
+	}
+
+	@GET
+	@Path("/{id}")
+	public Response getOneCategory(@PathParam("id") Long id) {
+
+		CategoryEntity category = categoryService.getOneCategory(id);
+
+		ApiResponse<CategoryEntity> response = new ApiResponse<>(Response.Status.OK.getStatusCode(),
+				"/api/categories/" + id, // Ruta
+											// dinámica
+				MethodEnum.GET, "Category retrieved successfully", category, false);
+
+		return Response.ok(response).build();
+
 	}
 
 }

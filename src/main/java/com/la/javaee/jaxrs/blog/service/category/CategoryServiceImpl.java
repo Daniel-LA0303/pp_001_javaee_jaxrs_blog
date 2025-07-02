@@ -2,11 +2,14 @@ package com.la.javaee.jaxrs.blog.service.category;
 
 import java.util.List;
 
+import com.la.javaee.jaxrs.blog.exceptions.AppException;
 import com.la.javaee.jaxrs.blog.models.category.CategoryEntity;
-import com.la.javaee.jaxrs.blog.repository.CrudRepository;
+import com.la.javaee.jaxrs.blog.repository.category.CategoryRepository;
+import com.la.javaee.jaxrs.blog.utils.enums.MethodEnum;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.ws.rs.core.Response;
 
 /*
  * Razón: @ApplicationScoped para servicios stateless
@@ -19,12 +22,19 @@ import jakarta.inject.Inject;
 public class CategoryServiceImpl implements CategoryService {
 
 	@Inject
-	private CrudRepository<CategoryEntity> categoryRepository;
+	private CategoryRepository categoryRepository;
 
 	@Override
 	public List<CategoryEntity> getAll() {
 		// TODO Auto-generated method stub
 		return categoryRepository.getAll();
+	}
+
+	@Override
+	public CategoryEntity getOneCategory(Long idCategory) {
+		return categoryRepository.getCategoryById(idCategory)
+				.orElseThrow(() -> new AppException("Category not found: " + idCategory,
+						Response.Status.NOT_FOUND.getStatusCode(), "/api/categories", MethodEnum.GET));
 	}
 
 }
